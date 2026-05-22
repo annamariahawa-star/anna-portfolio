@@ -24,7 +24,7 @@ export default function Home() {
     {
       title: 'Kamad',
       role: 'Director',
-      image: '/stills/kamad.png',
+      image: '/stills/Kamad.png',
       link: 'https://player.vimeo.com/video/1038170086',
       password: 'GMR@32',
     },
@@ -37,7 +37,7 @@ export default function Home() {
     {
       title: 'Venus',
       role: 'Cinematography',
-      image: '/stills/venus.png',
+      image: '/stills/Venus.png',
       link: 'https://www.youtube.com/watch?v=O7pVanRH7zk',
     },
     {
