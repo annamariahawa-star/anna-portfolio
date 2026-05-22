@@ -9,7 +9,7 @@ export default function Home() {
   const cursorRef = useRef(null);
 
   useEffect(() => {
-    const moveCursor = (e) => {
+    const moveCursor = (e: any) => {
       if (cursorRef.current) {
         cursorRef.current.style.transform =
           `translate(${e.clientX}px, ${e.clientY}px)`;
