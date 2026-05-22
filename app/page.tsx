@@ -6,7 +6,7 @@ export default function Home() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [hoveredProject, setHoveredProject] = useState(null);
 
-  const cursorRef = useRef(null);
+  const cursorRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const moveCursor = (e: any) => {
