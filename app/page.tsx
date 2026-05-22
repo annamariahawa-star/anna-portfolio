@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from 'react';
 
 export default function Home() {
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [hoveredProject, setHoveredProject] = useState(null);
+  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [hoveredProject, setHoveredProject] = useState<any>(null);
 
   const cursorRef = useRef<HTMLDivElement | null>(null);
 
