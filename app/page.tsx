@@ -88,7 +88,7 @@ export default function Home() {
     },
   ];
 
-  const getEmbedUrl = (url) => {
+  const getEmbedUrl = (url: string): string => {
     if (!url) return '';
 
     // YouTube
