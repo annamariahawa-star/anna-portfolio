@@ -152,7 +152,8 @@ export default function Home() {
             <img
               src={project.image}
               alt={project.title}
-              className="aspect-video w-full object-cover transition duration-[2000ms] group-hover:scale-[1.03]"
+                draggable="false"
+             className="pointer-events-none aspect-video w-full object-cover transition duration-[2000ms] group-hover:scale-[1.03]"
             />
           </div>
 
