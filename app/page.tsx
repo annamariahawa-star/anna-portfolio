@@ -230,12 +230,14 @@ export default function Home() {
       )}
 
       {/* HERO VIDEO */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
           autoPlay
           muted
           loop
           playsInline
+           disablePictureInPicture
+           controls={false}
           className="h-full w-full object-cover opacity-[0.18]"
         >
           <source src="/hero.mp4" type="video/mp4" />
