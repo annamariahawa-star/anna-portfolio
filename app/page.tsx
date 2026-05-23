@@ -28,7 +28,8 @@ export default function Home() {
       creator: 'Anna Maria Hawa',
       role: 'Writer & Director',
       details: 'Fiction · 14 min · 2025',
-      note: 'Tel Aviv International Student Film Festival — Best Editing Award',
+      note:
+        'Tel Aviv International Student Film Festival — Best Editing Award',
       image: '/stills/Kamad.png',
       link: 'https://player.vimeo.com/video/1038170086',
       password: 'GMR@32',
@@ -141,7 +142,16 @@ export default function Home() {
             setHoveredProject(null);
           }
         }}
-        className="group"
+        onClick={() => {
+          if (!project.watchable) return;
+
+          setSelectedProject(project);
+        }}
+        className={`group ${
+          project.watchable
+            ? 'cursor-pointer'
+            : 'cursor-default'
+        }`}
       >
 
         <div className="grid items-end gap-10 md:grid-cols-2">
@@ -149,11 +159,11 @@ export default function Home() {
           {/* IMAGE */}
           <div className="overflow-hidden">
 
-            <div
-              className="aspect-video w-full bg-cover bg-center transition duration-[2000ms] group-hover:scale-[1.03]"
-              style={{
-                backgroundImage: `url(${project.image})`,
-              }}
+            <img
+              src={project.image}
+              alt={project.title}
+              draggable="false"
+              className="aspect-video w-full object-cover transition duration-[2000ms] group-hover:scale-[1.03]"
             />
 
           </div>
@@ -188,12 +198,9 @@ export default function Home() {
               {project.watchable && (
                 <div className="flex flex-wrap gap-6 pt-4 text-sm">
 
-                  <button
-                    onClick={() => setSelectedProject(project)}
-                    className="transition hover:text-white"
-                  >
+                  <span className="transition group-hover:text-white">
                     Watch Film
-                  </button>
+                  </span>
 
                   {project.password && (
                     <span>
@@ -223,19 +230,22 @@ export default function Home() {
         className="pointer-events-none fixed left-0 top-0 z-[999] hidden h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/40 backdrop-blur-sm md:block"
       />
 
-      {/* HOVER IMAGE DESKTOP ONLY */}
+      {/* HOVER IMAGE - DESKTOP ONLY */}
       {hoveredProject && (
         <div className="pointer-events-none fixed inset-0 z-0 hidden opacity-[0.10] transition duration-[1500ms] md:block">
+
           <img
             src={hoveredProject.image}
             className="h-full w-full scale-105 object-cover blur-sm"
             alt=""
           />
+
         </div>
       )}
 
       {/* HERO VIDEO */}
       <div className="absolute inset-0 z-0 overflow-hidden">
+
         <video
           autoPlay
           muted
@@ -246,6 +256,7 @@ export default function Home() {
         >
           <source src="/hero.mp4" type="video/mp4" />
         </video>
+
       </div>
 
       {/* NOISE */}
