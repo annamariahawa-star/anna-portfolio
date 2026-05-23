@@ -223,14 +223,14 @@ export default function Home() {
 
       {/* HOVER IMAGE */}
       {hoveredProject && (
-        <div className="pointer-events-none fixed inset-0 z-0 opacity-[0.10] transition duration-[1500ms]">
-          <img
-            src={hoveredProject.image}
-            className="h-full w-full scale-105 object-cover blur-sm"
-            alt=""
-          />
-        </div>
-      )}
+  <div className="pointer-events-none fixed inset-0 z-0 hidden opacity-[0.10] transition duration-[1500ms] md:block">
+    <img
+      src={hoveredProject.image}
+      className="h-full w-full scale-105 object-cover blur-sm"
+      alt=""
+    />
+  </div>
+)}
 
       {/* HERO VIDEO */}
       <div className="absolute inset-0 z-0 overflow-hidden">
