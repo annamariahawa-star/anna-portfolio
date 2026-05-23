@@ -10,7 +10,7 @@ export default function Home() {
 
   useEffect(() => {
     const moveCursor = (e: MouseEvent) => {
-      if (cursorRef.current && window.innerWidth > 768) {
+      if (cursorRef.current) {
         cursorRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
       }
     };
@@ -28,8 +28,7 @@ export default function Home() {
       creator: 'Anna Maria Hawa',
       role: 'Writer & Director',
       details: 'Fiction · 14 min · 2025',
-      note:
-        'Tel Aviv International Student Film Festival — Best Editing Award',
+      note: 'Tel Aviv International Student Film Festival — Best Editing Award',
       image: '/stills/Kamad.png',
       link: 'https://player.vimeo.com/video/1038170086',
       password: 'GMR@32',
@@ -132,16 +131,8 @@ export default function Home() {
     return projects.map((project, index) => (
       <div
         key={index}
-        onMouseEnter={() => {
-          if (window.innerWidth > 768) {
-            setHoveredProject(project);
-          }
-        }}
-        onMouseLeave={() => {
-          if (window.innerWidth > 768) {
-            setHoveredProject(null);
-          }
-        }}
+        onMouseEnter={() => setHoveredProject(project)}
+        onMouseLeave={() => setHoveredProject(null)}
         onClick={() => {
           if (!project.watchable) return;
 
@@ -157,15 +148,12 @@ export default function Home() {
         <div className="grid items-end gap-10 md:grid-cols-2">
 
           {/* IMAGE */}
-          <div className="overflow-hidden">
-
+          <div className="overflow-hidden rounded-none">
             <img
               src={project.image}
               alt={project.title}
-              draggable="false"
               className="aspect-video w-full object-cover transition duration-[2000ms] group-hover:scale-[1.03]"
             />
-
           </div>
 
           {/* TEXT */}
@@ -222,7 +210,7 @@ export default function Home() {
   };
 
   return (
-    <main className="relative min-h-[100svh] overflow-x-hidden bg-[#050505] text-white">
+    <main className="relative min-h-[100svh] overflow-x-hidden bg-[#050505] text-white cursor-none">
 
       {/* CURSOR */}
       <div
@@ -230,41 +218,34 @@ export default function Home() {
         className="pointer-events-none fixed left-0 top-0 z-[999] hidden h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/40 backdrop-blur-sm md:block"
       />
 
-      {/* HOVER IMAGE - DESKTOP ONLY */}
+      {/* HOVER IMAGE */}
       {hoveredProject && (
-        <div className="pointer-events-none fixed inset-0 z-0 hidden opacity-[0.10] transition duration-[1500ms] md:block">
-
+        <div className="pointer-events-none fixed inset-0 z-0 opacity-[0.10] transition duration-[1500ms]">
           <img
             src={hoveredProject.image}
             className="h-full w-full scale-105 object-cover blur-sm"
             alt=""
           />
-
         </div>
       )}
 
       {/* HERO VIDEO */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-
         <video
           autoPlay
           muted
           loop
           playsInline
-          preload="auto"
           className="h-full w-full object-cover opacity-[0.18]"
         >
           <source src="/hero.mp4" type="video/mp4" />
         </video>
-
       </div>
 
       {/* NOISE */}
       <div
-        className="pointer-events-none fixed inset-0 z-[1] opacity-[0.04] mix-blend-screen"
-        style={{
-          backgroundImage: "url('/noise.png')",
-        }}
+        className="pointer-events-none absolute inset-0 z-50 opacity-[0.04] mix-blend-screen"
+        style={{ backgroundImage: "url('/noise.png')" }}
       />
 
       {/* VIGNETTE */}
@@ -277,33 +258,15 @@ export default function Home() {
       />
 
       {/* HERO */}
-      <section className="relative isolate z-10 flex min-h-[100svh] flex-col items-center justify-center px-6 text-center">
+      <section className="relative z-10 flex min-h-screen flex-col items-center justify-center px-6 text-center">
 
         {/* WARM LIGHT */}
         <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_top,rgba(180,120,70,0.18),transparent_60%)]" />
 
         <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_bottom,rgba(120,70,40,0.12),transparent_70%)]" />
 
-        {/* HERO FADE */}
-
-<div
-  className="pointer-events-none absolute bottom-0 left-0 z-20 h-[260px] w-full"
-  style={{
-    background: `
-      linear-gradient(
-        to bottom,
-        rgba(5,5,5,0) 0%,
-        rgba(5,5,5,0.08) 20%,
-        rgba(5,5,5,0.22) 40%,
-        rgba(5,5,5,0.45) 60%,
-        rgba(5,5,5,0.75) 82%,
-        #050505 100%
-      )
-    `,
-    filter: 'blur(18px)',
-    transform: 'translateY(40px) scaleY(1.15)',
-  }}
-/>
+        {/* FADE */}
+        <div className="pointer-events-none absolute bottom-0 left-0 h-64 w-full bg-gradient-to-b from-transparent to-[#050505]" />
 
         <div className="relative z-10 flex flex-col items-center">
 
@@ -311,7 +274,7 @@ export default function Home() {
             cinematography ✦ direction
           </p>
 
-          <h1 className="text-[3.6rem] font-extralight leading-none tracking-[-0.05em] sm:text-[5.5rem] md:text-[9rem]">
+          <h1 className="text-[4rem] font-extralight leading-none tracking-[-0.05em] sm:text-[5.5rem] md:text-[9rem]">
             Anna Maria Hawa
           </h1>
 
@@ -461,7 +424,7 @@ export default function Home() {
           >
 
             <iframe
-              className="aspect-video w-full"
+              className="aspect-video w-full rounded-none"
               src={getEmbedUrl(selectedProject.link)}
               frameBorder="0"
               allow="autoplay; fullscreen; picture-in-picture"
