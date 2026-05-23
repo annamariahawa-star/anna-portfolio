@@ -285,7 +285,25 @@ export default function Home() {
         <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_bottom,rgba(120,70,40,0.12),transparent_70%)]" />
 
         {/* HERO FADE */}
-        <div className="pointer-events-none absolute bottom-0 left-0 h-64 w-full bg-gradient-to-b from-transparent to-[#050505]" />
+
+<div
+  className="pointer-events-none absolute bottom-0 left-0 z-20 h-[260px] w-full"
+  style={{
+    background: `
+      linear-gradient(
+        to bottom,
+        rgba(5,5,5,0) 0%,
+        rgba(5,5,5,0.08) 20%,
+        rgba(5,5,5,0.22) 40%,
+        rgba(5,5,5,0.45) 60%,
+        rgba(5,5,5,0.75) 82%,
+        #050505 100%
+      )
+    `,
+    filter: 'blur(18px)',
+    transform: 'translateY(40px) scaleY(1.15)',
+  }}
+/>
 
         <div className="relative z-10 flex flex-col items-center">
 
