@@ -148,11 +148,13 @@ export default function Home() {
         <div className="grid items-end gap-10 md:grid-cols-2">
 
           {/* IMAGE */}
-         <div className="overflow-hidden rounded-none">
+         <div className="overflow-hidden rounded-none relative isolate">
   <div
     className="aspect-video w-full bg-cover bg-center transition duration-[2000ms] group-hover:scale-[1.03]"
     style={{
       backgroundImage: `url(${project.image})`,
+      WebkitTouchCallout: 'none',
+      WebkitUserSelect: 'none',
     }}
   />
 </div>
