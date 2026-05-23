@@ -1,5 +1,6 @@
 'use client';
 
+import Head from 'next/head';
 import { useEffect, useRef, useState } from 'react';
 
 export default function Home() {
@@ -210,239 +211,248 @@ export default function Home() {
   };
 
   return (
-    <main className="relative min-h-screen overflow-x-hidden bg-[#050505] text-white cursor-none">
+    <>
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1"
+        />
+      </Head>
 
-      {/* CURSOR */}
-      <div
-        ref={cursorRef}
-        className="pointer-events-none fixed left-0 top-0 z-[999] hidden h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/40 backdrop-blur-sm md:block"
-      />
+      <main className="relative min-h-screen overflow-x-hidden bg-[#050505] text-white cursor-none">
 
-      {/* HOVER IMAGE */}
-      {hoveredProject && (
-        <div className="pointer-events-none fixed inset-0 z-0 opacity-[0.10] transition duration-[1500ms]">
-          <img
-            src={hoveredProject.image}
-            className="h-full w-full scale-105 object-cover blur-sm"
-            alt=""
-          />
-        </div>
-      )}
-
-      {/* HERO VIDEO */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="h-full w-full object-cover opacity-[0.18]"
-        >
-          <source src="/hero.mp4" type="video/mp4" />
-        </video>
-      </div>
-
-      {/* NOISE */}
-      <div
-        className="pointer-events-none fixed -top-[120px] left-0 right-0 bottom-0 z-50 opacity-[0.04] mix-blend-screen"
-        style={{ backgroundImage: "url('/noise.png')" }}
-      />
-
-      {/* VIGNETTE */}
-      <div
-        className="pointer-events-none fixed -top-[120px] left-0 right-0 bottom-0 z-40"
-        style={{
-          background:
-            'radial-gradient(circle, transparent 35%, rgba(0,0,0,0.88) 100%)',
-        }}
-      />
-
-      {/* HERO */}
-      <section className="relative z-10 flex min-h-screen flex-col items-center justify-center px-6 text-center">
-
-        {/* CINEMATIC WARM LIGHT */}
-        <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_top,rgba(180,120,70,0.18),transparent_60%)]" />
-
-        <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_bottom,rgba(120,70,40,0.12),transparent_70%)]" />
-
-        {/* HERO FADE */}
-        <div className="pointer-events-none absolute bottom-0 left-0 h-64 w-full bg-gradient-to-b from-transparent to-[#050505]" />
-
-        <div className="relative z-10 flex flex-col items-center">
-
-          <p className="mb-8 text-[10px] uppercase tracking-[0.45em] text-zinc-600 sm:text-xs sm:tracking-[0.7em]">
-            cinematography ✦ direction
-          </p>
-
-          <h1 className="text-[4rem] font-extralight leading-none tracking-[-0.05em] sm:text-[5.5rem] md:text-[9rem]">
-            Anna Maria Hawa
-          </h1>
-
-          <p className="mt-8 max-w-xl text-center text-sm text-zinc-500">
-            Fiction · Documentary · Visual Storytelling
-          </p>
-
-          {/* NAVIGATION */}
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
-
-            <a
-              href="#fiction"
-              className="rounded-full border border-white/10 px-6 py-3 text-xs uppercase tracking-[0.25em] text-zinc-400 transition hover:border-white/30 hover:text-white"
-            >
-              Fiction
-            </a>
-
-            <a
-              href="#documentary"
-              className="rounded-full border border-white/10 px-6 py-3 text-xs uppercase tracking-[0.25em] text-zinc-400 transition hover:border-white/30 hover:text-white"
-            >
-              Documentary
-            </a>
-
-            <a
-              href="#contact"
-              className="rounded-full border border-white/10 px-6 py-3 text-xs uppercase tracking-[0.25em] text-zinc-400 transition hover:border-white/30 hover:text-white"
-            >
-              Contact
-            </a>
-
-          </div>
-
-        </div>
-
-      </section>
-
-      {/* FICTION */}
-      <section
-        id="fiction"
-        className="relative z-10 px-6 pb-40"
-      >
-
-        <div className="mx-auto max-w-6xl">
-
-          <div className="mb-24 text-center">
-
-            <p className="mb-6 text-xs uppercase tracking-[0.35em] text-zinc-600 sm:tracking-[0.5em]">
-              Selected Work
-            </p>
-
-            <h2 className="text-4xl font-extralight sm:text-5xl md:text-7xl">
-              Fiction
-            </h2>
-
-          </div>
-
-          <div className="space-y-32">
-            {renderProjects(fictionProjects)}
-          </div>
-
-        </div>
-
-      </section>
-
-      {/* DOCUMENTARY */}
-      <section
-        id="documentary"
-        className="relative z-10 px-6 pb-40"
-      >
-
-        <div className="mx-auto max-w-6xl border-t border-white/5 pt-32">
-
-          <div className="mb-24 text-center">
-
-            <p className="mb-6 text-xs uppercase tracking-[0.35em] text-zinc-600 sm:tracking-[0.5em]">
-              Selected Work
-            </p>
-
-            <h2 className="text-4xl font-extralight sm:text-5xl md:text-7xl">
-              Documentary
-            </h2>
-
-          </div>
-
-          <div className="space-y-32">
-            {renderProjects(documentaryProjects)}
-          </div>
-
-        </div>
-
-      </section>
-
-      {/* CONTACT */}
-      <section
-        id="contact"
-        className="relative z-10 border-t border-white/5 px-6 py-32"
-      >
-
-        <div className="mx-auto max-w-3xl text-center">
-
-          <h2 className="mb-16 text-4xl font-extralight sm:text-5xl md:text-7xl">
-            Contact
-          </h2>
-
-          <div className="space-y-6 text-lg text-zinc-500">
-
-            <a
-              href="tel:+972509621242"
-              className="transition hover:text-white"
-            >
-              +972 50 962 1242
-            </a>
-
-            <a
-              href="mailto:annamariahawa@gmail.com"
-              className="block transition hover:text-white"
-            >
-              annamariahawa@gmail.com
-            </a>
-
-            <a
-              href="https://www.instagram.com/anna_m_ha"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block transition hover:text-white"
-            >
-              Instagram
-            </a>
-
-          </div>
-
-        </div>
-
-      </section>
-
-      {/* VIDEO MODAL */}
-      {selectedProject && (
+        {/* CURSOR */}
         <div
-          onClick={() => setSelectedProject(null)}
-          className="fixed inset-0 z-[200] flex items-center justify-center bg-black/95 p-6 backdrop-blur-md"
+          ref={cursorRef}
+          className="pointer-events-none fixed left-0 top-0 z-[999] hidden h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/40 backdrop-blur-sm md:block"
+        />
+
+        {/* HOVER IMAGE */}
+        {hoveredProject && (
+          <div className="pointer-events-none fixed inset-0 z-0 opacity-[0.10] transition duration-[1500ms]">
+            <img
+              src={hoveredProject.image}
+              className="h-full w-full scale-105 object-cover blur-sm"
+              alt=""
+            />
+          </div>
+        )}
+
+        {/* HERO VIDEO */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="h-full w-full object-cover opacity-[0.18]"
+          >
+            <source src="/hero.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+        {/* NOISE */}
+        <div
+          className="pointer-events-none fixed inset-0 z-50 opacity-[0.04] mix-blend-screen"
+          style={{ backgroundImage: "url('/noise.png')" }}
+        />
+
+        {/* VIGNETTE */}
+        <div
+          className="pointer-events-none fixed inset-0 z-40"
+          style={{
+            background:
+              'radial-gradient(circle, transparent 35%, rgba(0,0,0,0.88) 100%)',
+          }}
+        />
+
+        {/* HERO */}
+        <section className="relative z-10 flex min-h-screen flex-col items-center justify-center px-6 text-center">
+
+          {/* HERO WARM LIGHT ONLY */}
+          <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_top,rgba(180,120,70,0.18),transparent_60%)]" />
+
+          <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_bottom,rgba(120,70,40,0.12),transparent_70%)]" />
+
+          {/* HERO FADE */}
+          <div className="pointer-events-none absolute bottom-0 left-0 h-64 w-full bg-gradient-to-b from-transparent to-[#050505]" />
+
+          <div className="relative z-10 flex flex-col items-center">
+
+            <p className="mb-8 text-[10px] uppercase tracking-[0.45em] text-zinc-600 sm:text-xs sm:tracking-[0.7em]">
+              cinematography ✦ direction
+            </p>
+
+            <h1 className="text-[4rem] font-extralight leading-none tracking-[-0.05em] sm:text-[5.5rem] md:text-[9rem]">
+              Anna Maria Hawa
+            </h1>
+
+            <p className="mt-8 max-w-xl text-center text-sm text-zinc-500">
+              Fiction · Documentary · Visual Storytelling
+            </p>
+
+            {/* NAVIGATION */}
+            <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
+
+              <a
+                href="#fiction"
+                className="rounded-full border border-white/10 px-6 py-3 text-xs uppercase tracking-[0.25em] text-zinc-400 transition hover:border-white/30 hover:text-white"
+              >
+                Fiction
+              </a>
+
+              <a
+                href="#documentary"
+                className="rounded-full border border-white/10 px-6 py-3 text-xs uppercase tracking-[0.25em] text-zinc-400 transition hover:border-white/30 hover:text-white"
+              >
+                Documentary
+              </a>
+
+              <a
+                href="#contact"
+                className="rounded-full border border-white/10 px-6 py-3 text-xs uppercase tracking-[0.25em] text-zinc-400 transition hover:border-white/30 hover:text-white"
+              >
+                Contact
+              </a>
+
+            </div>
+
+          </div>
+
+        </section>
+
+        {/* FICTION */}
+        <section
+          id="fiction"
+          className="relative z-10 px-6 pb-40"
         >
 
+          <div className="mx-auto max-w-6xl">
+
+            <div className="mb-24 text-center">
+
+              <p className="mb-6 text-xs uppercase tracking-[0.35em] text-zinc-600 sm:tracking-[0.5em]">
+                Selected Work
+              </p>
+
+              <h2 className="text-4xl font-extralight sm:text-5xl md:text-7xl">
+                Fiction
+              </h2>
+
+            </div>
+
+            <div className="space-y-32">
+              {renderProjects(fictionProjects)}
+            </div>
+
+          </div>
+
+        </section>
+
+        {/* DOCUMENTARY */}
+        <section
+          id="documentary"
+          className="relative z-10 px-6 pb-40"
+        >
+
+          <div className="mx-auto max-w-6xl border-t border-white/5 pt-32">
+
+            <div className="mb-24 text-center">
+
+              <p className="mb-6 text-xs uppercase tracking-[0.35em] text-zinc-600 sm:tracking-[0.5em]">
+                Selected Work
+              </p>
+
+              <h2 className="text-4xl font-extralight sm:text-5xl md:text-7xl">
+                Documentary
+              </h2>
+
+            </div>
+
+            <div className="space-y-32">
+              {renderProjects(documentaryProjects)}
+            </div>
+
+          </div>
+
+        </section>
+
+        {/* CONTACT */}
+        <section
+          id="contact"
+          className="relative z-10 border-t border-white/5 px-6 py-32"
+        >
+
+          <div className="mx-auto max-w-3xl text-center">
+
+            <h2 className="mb-16 text-4xl font-extralight sm:text-5xl md:text-7xl">
+              Contact
+            </h2>
+
+            <div className="space-y-6 text-lg text-zinc-500">
+
+              <a
+                href="tel:+972509621242"
+                className="transition hover:text-white"
+              >
+                +972 50 962 1242
+              </a>
+
+              <a
+                href="mailto:annamariahawa@gmail.com"
+                className="block transition hover:text-white"
+              >
+                annamariahawa@gmail.com
+              </a>
+
+              <a
+                href="https://www.instagram.com/anna_m_ha"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block transition hover:text-white"
+              >
+                Instagram
+              </a>
+
+            </div>
+
+          </div>
+
+        </section>
+
+        {/* VIDEO MODAL */}
+        {selectedProject && (
           <div
-            className="w-full max-w-6xl"
-            onClick={(e) => e.stopPropagation()}
+            onClick={() => setSelectedProject(null)}
+            className="fixed inset-0 z-[200] flex items-center justify-center bg-black/95 p-6 backdrop-blur-md"
           >
 
-            <iframe
-              className="aspect-video w-full rounded-none"
-              src={getEmbedUrl(selectedProject.link)}
-              frameBorder="0"
-              allow="autoplay; fullscreen; picture-in-picture"
-              allowFullScreen
-            />
-
-            <button
-              onClick={() => setSelectedProject(null)}
-              className="mt-8 text-zinc-500 transition hover:text-white"
+            <div
+              className="w-full max-w-6xl"
+              onClick={(e) => e.stopPropagation()}
             >
-              Close
-            </button>
+
+              <iframe
+                className="aspect-video w-full rounded-none"
+                src={getEmbedUrl(selectedProject.link)}
+                frameBorder="0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+              />
+
+              <button
+                onClick={() => setSelectedProject(null)}
+                className="mt-8 text-zinc-500 transition hover:text-white"
+              >
+                Close
+              </button>
+
+            </div>
 
           </div>
+        )}
 
-        </div>
-      )}
-
-    </main>
+      </main>
+    </>
   );
 }
