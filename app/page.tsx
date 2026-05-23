@@ -148,14 +148,14 @@ export default function Home() {
         <div className="grid items-end gap-10 md:grid-cols-2">
 
           {/* IMAGE */}
-          <div className="overflow-hidden rounded-none">
-            <img
-              src={project.image}
-              alt={project.title}
-                draggable="false"
-             className="pointer-events-none aspect-video w-full object-cover transition duration-[2000ms] group-hover:scale-[1.03]"
-            />
-          </div>
+         <div className="overflow-hidden rounded-none">
+  <div
+    className="aspect-video w-full bg-cover bg-center transition duration-[2000ms] group-hover:scale-[1.03]"
+    style={{
+      backgroundImage: `url(${project.image})`,
+    }}
+  />
+</div>
 
           {/* TEXT */}
           <div className="pb-4">
