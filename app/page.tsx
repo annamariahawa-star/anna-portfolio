@@ -152,14 +152,14 @@ export default function Home() {
             <img
               src={project.image}
               alt={project.title}
-              className="aspect-video w-full object-cover transition duration-[2000ms] group-hover:scale-[1.03]"
+              className="h-[65vh] w-full object-cover transition duration-[2000ms] group-hover:scale-[1.03]"
             />
           </div>
 
           {/* TEXT */}
           <div className="pb-4">
 
-            <p className="mb-3 text-[11px] uppercase tracking-[0.4em] text-zinc-500">
+            <p className="mb-3 text-[10px] uppercase tracking-[0.35em] text-zinc-500 sm:text-[11px] sm:tracking-[0.4em]">
               {project.role}
             </p>
 
@@ -169,7 +169,7 @@ export default function Home() {
 
             <div className="space-y-3 text-zinc-500">
 
-              <p className="text-sm uppercase tracking-[0.25em] text-zinc-400">
+              <p className="text-sm uppercase tracking-[0.2em] text-zinc-400 sm:tracking-[0.25em]">
                 {project.creator}
               </p>
 
@@ -210,12 +210,12 @@ export default function Home() {
   };
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#050505] text-white cursor-none">
+    <main className="relative min-h-screen overflow-x-hidden bg-[#050505] text-white cursor-none">
 
       {/* CURSOR */}
       <div
         ref={cursorRef}
-        className="pointer-events-none fixed left-0 top-0 z-[999] h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/40 backdrop-blur-sm"
+        className="pointer-events-none fixed left-0 top-0 z-[999] hidden h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/40 backdrop-blur-sm md:block"
       />
 
       {/* HOVER IMAGE */}
@@ -244,12 +244,13 @@ export default function Home() {
 
       {/* NOISE */}
       <div
-className="pointer-events-none fixed -top-10 left-0 right-0 bottom-0 z-50 opacity-[0.04] mix-blend-screen"        style={{ backgroundImage: "url('/noise.png')" }}
+        className="pointer-events-none fixed -top-[120px] left-0 right-0 bottom-0 z-50 opacity-[0.04] mix-blend-screen"
+        style={{ backgroundImage: "url('/noise.png')" }}
       />
 
       {/* VIGNETTE */}
       <div
-        className="pointer-events-none fixed -top-10 left-0 right-0 bottom-0 z-40"
+        className="pointer-events-none fixed -top-[120px] left-0 right-0 bottom-0 z-40"
         style={{
           background:
             'radial-gradient(circle, transparent 35%, rgba(0,0,0,0.88) 100%)',
@@ -269,11 +270,11 @@ className="pointer-events-none fixed -top-10 left-0 right-0 bottom-0 z-50 opacit
 
         <div className="relative z-10 flex flex-col items-center">
 
-          <p className="mb-8 text-xs uppercase tracking-[0.7em] text-zinc-600">
+          <p className="mb-8 text-[10px] uppercase tracking-[0.45em] text-zinc-600 sm:text-xs sm:tracking-[0.7em]">
             cinematography ✦ direction
           </p>
 
-          <h1 className="text-6xl font-extralight leading-none tracking-[-0.05em] md:text-[9rem]">
+          <h1 className="text-[4rem] font-extralight leading-none tracking-[-0.05em] sm:text-[5.5rem] md:text-[9rem]">
             Anna Maria Hawa
           </h1>
 
@@ -282,7 +283,7 @@ className="pointer-events-none fixed -top-10 left-0 right-0 bottom-0 z-50 opacit
           </p>
 
           {/* NAVIGATION */}
-          <div className="mt-12 flex items-center justify-center gap-4">
+          <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
 
             <a
               href="#fiction"
@@ -297,12 +298,14 @@ className="pointer-events-none fixed -top-10 left-0 right-0 bottom-0 z-50 opacit
             >
               Documentary
             </a>
-<a
-  href="#contact"
-  className="rounded-full border border-white/10 px-6 py-3 text-xs uppercase tracking-[0.25em] text-zinc-400 transition hover:border-white/30 hover:text-white"
->
-  Contact
-</a>
+
+            <a
+              href="#contact"
+              className="rounded-full border border-white/10 px-6 py-3 text-xs uppercase tracking-[0.25em] text-zinc-400 transition hover:border-white/30 hover:text-white"
+            >
+              Contact
+            </a>
+
           </div>
 
         </div>
@@ -319,11 +322,11 @@ className="pointer-events-none fixed -top-10 left-0 right-0 bottom-0 z-50 opacit
 
           <div className="mb-24 text-center">
 
-            <p className="mb-6 text-xs uppercase tracking-[0.5em] text-zinc-600">
+            <p className="mb-6 text-xs uppercase tracking-[0.35em] text-zinc-600 sm:tracking-[0.5em]">
               Selected Work
             </p>
 
-            <h2 className="text-5xl font-extralight md:text-7xl">
+            <h2 className="text-4xl font-extralight sm:text-5xl md:text-7xl">
               Fiction
             </h2>
 
@@ -347,11 +350,11 @@ className="pointer-events-none fixed -top-10 left-0 right-0 bottom-0 z-50 opacit
 
           <div className="mb-24 text-center">
 
-            <p className="mb-6 text-xs uppercase tracking-[0.5em] text-zinc-600">
+            <p className="mb-6 text-xs uppercase tracking-[0.35em] text-zinc-600 sm:tracking-[0.5em]">
               Selected Work
             </p>
 
-            <h2 className="text-5xl font-extralight md:text-7xl">
+            <h2 className="text-4xl font-extralight sm:text-5xl md:text-7xl">
               Documentary
             </h2>
 
@@ -366,14 +369,14 @@ className="pointer-events-none fixed -top-10 left-0 right-0 bottom-0 z-50 opacit
       </section>
 
       {/* CONTACT */}
-  <section
-  id="contact"
-  className="relative z-10 border-t border-white/5 px-6 py-32"
->
+      <section
+        id="contact"
+        className="relative z-10 border-t border-white/5 px-6 py-32"
+      >
 
         <div className="mx-auto max-w-3xl text-center">
 
-          <h2 className="mb-16 text-5xl font-extralight md:text-7xl">
+          <h2 className="mb-16 text-4xl font-extralight sm:text-5xl md:text-7xl">
             Contact
           </h2>
 
