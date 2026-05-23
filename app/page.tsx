@@ -5,6 +5,27 @@ import { useEffect, useRef, useState } from 'react';
 export default function Home() {
   const [selectedProject, setSelectedProject] = useState<any>(null);
   const [hoveredProject, setHoveredProject] = useState<any>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchOpen, setSearchOpen] = useState(false);
+  const handleSearch = (value: string) => {
+  const found = allProjects.find((p) =>
+    p.title.toLowerCase().includes(value.toLowerCase())
+  );
+
+  if (!found) return;
+
+  const id = found.title.toLowerCase().replaceAll(" ", "-");
+
+  const element = document.getElementById(id);
+
+  if (element) {
+    element.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+  }
+};
 
   const cursorRef = useRef<HTMLDivElement | null>(null);
 
@@ -105,6 +126,14 @@ export default function Home() {
       image: '/stills/land.png',
     },
   ];
+  const allProjects = [...fictionProjects, ...documentaryProjects];
+
+const filteredProjects =
+  searchQuery.trim() === ""
+    ? allProjects
+    : allProjects.filter((p) =>
+        p.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
 
   const getEmbedUrl = (url: string): string => {
     if (!url) return '';
@@ -131,6 +160,7 @@ export default function Home() {
     return projects.map((project, index) => (
       <div
         key={index}
+        id={project.title.toLowerCase().replaceAll(" ", "-")}
         onMouseEnter={() => setHoveredProject(project)}
         onMouseLeave={() => setHoveredProject(null)}
         onClick={() => {
@@ -211,7 +241,67 @@ export default function Home() {
 
   return (
     <main className="relative min-h-[100svh] overflow-x-hidden bg-[#050505] text-white cursor-none">
+{/* TOP BAR */}
+<div className="fixed top-0 left-0 z-[999] flex w-full items-center justify-between px-6 py-5">
+{/* MENU */}
+{menuOpen && (
+  <div className="fixed left-0 top-0 z-[1000] h-full w-64 bg-black/95 p-8">
 
+    <button onClick={() => setMenuOpen(false)} className="text-xl">
+      ✕
+    </button>
+
+    <div className="mt-10 flex flex-col gap-6 text-sm uppercase tracking-[0.25em] text-zinc-400">
+
+      <a href="#fiction" onClick={() => setMenuOpen(false)}>Fiction</a>
+      <a href="#documentary" onClick={() => setMenuOpen(false)}>Documentary</a>
+      <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+
+    </div>
+
+  </div>
+)}
+  {/* MENU BUTTON */}
+  <button onClick={() => setMenuOpen(true)} className="text-xl">
+    ☰
+  </button>
+
+  {/* SEARCH */}
+ <button
+  onClick={() => setSearchOpen(!searchOpen)}
+  className="text-white/70 hover:text-white transition"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1}
+    stroke="currentColor"
+    className="h-5 w-5"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="m21 21-4.3-4.3m1.8-5.2a7 7 0 1 1-14 0 7 7 0 1 1 14 0Z"
+    />
+  </svg>
+</button>
+
+{searchOpen && (
+  <input
+    value={searchQuery}
+    onChange={(e) => setSearchQuery(e.target.value)}
+    onKeyDown={(e) => {
+      if (e.key === "Enter") {
+        handleSearch(searchQuery);
+        setSearchOpen(false);
+      }
+    }}
+    placeholder="Search films..."
+    className="fixed top-16 right-6 bg-black border-b border-white/20 text-sm outline-none"
+  />
+)}
+</div>
       {/* CURSOR */}
       <div
         ref={cursorRef}
@@ -335,7 +425,9 @@ export default function Home() {
           </div>
 
           <div className="space-y-32">
-            {renderProjects(fictionProjects)}
+            {renderProjects(
+  filteredProjects.filter((p) => fictionProjects.includes(p))
+)}
           </div>
 
         </div>
@@ -363,7 +455,9 @@ export default function Home() {
           </div>
 
           <div className="space-y-32">
-            {renderProjects(documentaryProjects)}
+            {renderProjects(
+  filteredProjects.filter((p) => documentaryProjects.includes(p))
+)}
           </div>
 
         </div>
