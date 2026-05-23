@@ -250,7 +250,7 @@ export default function Home() {
 
       {/* VIGNETTE */}
       <div
-        className="pointer-events-none absolute inset-0 z-40"
+        className="pointer-events-none fixed inset-0 z-[1]"
         style={{
           background:
             'radial-gradient(circle, transparent 35%, rgba(0,0,0,0.88) 100%)',
